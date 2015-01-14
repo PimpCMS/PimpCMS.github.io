@@ -1,0 +1,17 @@
+The Pimp C Management System
+
+
+Curate a message like never before.
+One is greater than many. Your message deserves a shrine. Scattering it across separate bodies of text doesn't do it justice. We help you deliver your message to the world in a single, cohesive masterpiece.
+Meaning evolves over time. And so should your message. We use Git to manage your content so that every commit is like a draft, and no draft is final.
+
+
+Optimize around communication.
+See the bigger picture (right away!) See how this page is read? It starts with the most general parts and gets more specific. Read what you want, and skip the rest.
+Write like you always have. The paragraph is the most widely taught writing form. We don't believe in changing this. Here, topic sentences and support arguments are a natural part of the writing experience.
+
+
+Get started in seconds.
+Fork this GitHub repo as your GitHub pages repo. Make sure to call the repo username.github.io. "username" refers to your GitHub username.
+Edit the masterpiece file. This page is generated using the contents of the masterpiece file, which you can edit and make your own.
+That's it! Navigate to username.github.io to see your masterpiece.
