@@ -37,12 +37,13 @@
 			get('hood/user.txt', function(user) {
 				username = user.split(/\s+/)[0];
 				document.title = username;
-				get('https://api.github.com/repos/'+username+'/'+username+'.github.io/contents/txts', function(response) {
+				var repo = username+'.github.io/';
+				get('https://api.github.com/repos/'+username+'/'+repo+'contents/txts', function(response) {
 					var contents = JSON.parse(response);
 					for (var i = 0; i < contents.length; ++i) {
 						if (contents[i].type == 'file') {
 							var container = document.getElementsByClassName('pcms')[0];
-							PCMS(contents[i].download_url, container);
+							PCMS('https://'+repo+contents[i].path, container);
 						}
 					}
 				});
