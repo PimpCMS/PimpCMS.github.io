@@ -22,7 +22,7 @@ var getUser = function(callback) {
 	} else {
 		get('hood/username.txt', function(username) {
 			callback(username.split(/\s+/)[0]);	//	Regex removes trailing whitespace
-		}
+		});
 	}
 };
 
