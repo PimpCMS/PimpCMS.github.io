@@ -15,7 +15,7 @@ var get = function(url, callback) {
 };
 
 //	Get the GitHub username, either from *.github URL (hack) or from /hood/user.txt
-var getUser = function(callback) {
+var getUsername = function(callback) {
 	var urlParts = window.location.href.substring(window.location.protocol.length).split('.');
 	if (urlParts[1] == 'github') {
 		callback(urlParts[0]);
