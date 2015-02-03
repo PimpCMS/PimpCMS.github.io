@@ -30,7 +30,7 @@ var getDirectoryIndex = function(username, callback) {
 	document.title = username;
 	get('https://api.github.com/repos/'+username+'/'+username+'.github.io/contents/txts', function(response) {
 		callback(JSON.parse(response));
-	}
+	});
 };
 
 var TreeNode = function(contentStr) {
