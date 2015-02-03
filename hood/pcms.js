@@ -1,45 +1,80 @@
-var PCMS = function(filePath, containerElement) {
+//	Cross-browser AJAX
+var get = function(url, callback) {
+	try {
+		var async = true;
+		var x = new(this.XMLHttpRequest || ActiveXObject)('MSXML2.XMLHTTP.3.0');
+		x.open('GET', url, async);
+		x.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+		x.onreadystatechange = function() {
+			x.readyState > 3 && callback && callback(x.responseText);
+		};
+		x.send(null);
+	} catch (e) {
+		window.console && console.log(e);
+	}
+};
 
-	var TreeNode = function(contentStr) {
-		var content = contentStr;
-		var children = [];
-		this.getContent = function() {
-			return content;
-		};
-		this.addChild = function(node) {
-			children.push(node);
-		};
-		this.getChild = function(idx) {
-			return children[idx] || null;
-		};
-		this.children = function() {
-			return children.length;
-		};
+//	Get the GitHub username, either from *.github URL (hack) or from /hood/user.txt
+var getUser = function(callback) {
+	var urlParts = window.location.href.substring(window.location.protocol.length).split('.');
+	if (urlParts[1] == 'github') {
+		callback(urlParts[0]);
+	} else {
+		get('hood/username.txt', function(username) {
+			callback(username.split(/\s+/)[0]);	//	Regex removes trailing whitespace
+		}
+	}
+};
+
+var getDirectoryIndex = function(username, callback) {
+	document.title = username;
+	get('https://api.github.com/repos/'+username+'/'+username+'.github.io/contents/txts', function(response) {
+		callback(JSON.parse(response));
+	}
+};
+
+var TreeNode = function(contentStr) {
+	var content = contentStr;
+	var children = [];
+	this.getContent = function() {
+		return content;
 	};
+	this.addChild = function(node) {
+		children.push(node);
+	};
+	this.getChild = function(idx) {
+		return children[idx] || null;
+	};
+	this.children = function() {
+		return children.length;
+	};
+};
 
-	var Tree = function(treeStr) {
-		var title = new TreeNode('If you are seeing this, your master file is empty');
-		var treeList = treeStr.split(/\r?\n/);
-		if (treeList.length > 0) {
-			title = new TreeNode(treeList.shift());
-			document.title = title.getContent();
-			for (var i = 0; i < treeList.length; i++) {
-				if (treeList[i].length !== 0) {
-					var topic = new TreeNode(treeList[i]);
-					while (++i < treeList.length) {
-						if (treeList[i].length === 0) {
-							break;
-						}
-						var argument = new TreeNode(treeList[i]);
-						topic.addChild(argument);
-
+var Tree = function(treeStr) {
+	var title = new TreeNode('If you are seeing this, your master file is empty');
+	var treeList = treeStr.split(/\r?\n/);
+	if (treeList.length > 0) {
+		title = new TreeNode(treeList.shift());
+		document.title = title.getContent();
+		for (var i = 0; i < treeList.length; i++) {
+			if (treeList[i].length !== 0) {
+				var topic = new TreeNode(treeList[i]);
+				while (++i < treeList.length) {
+					if (treeList[i].length === 0) {
+						break;
 					}
-					title.addChild(topic);
+					var argument = new TreeNode(treeList[i]);
+					topic.addChild(argument);
+
 				}
+				title.addChild(topic);
 			}
 		}
-		this.root = title;
-	};
+	}
+	this.root = title;
+};
+
+var PCMS = function(contentStr, containerElement) {
 
     var selectText = function(element) {
 		if (window.getSelection) {
@@ -111,8 +146,25 @@ var PCMS = function(filePath, containerElement) {
 		}
 	};
 
-	get(filePath, function(responseText) {
-		var tree = new Tree(responseText);
-		render(containerElement, tree.root, 1);
+	var tree = new Tree(contentStr);
+	render(containerElement, tree.root, 1);
+};
+
+window.onload = function() {
+	getUsername(function(username) {
+		if (username != 'replace_me_with_your_github_username') {
+			getDirectoryIndex(username, function(directoryIndex) {
+				var container = document.getElementsByClassName('pcms')[0];
+				for (var i = 0; i < directoryIndex.length; ++i) {
+					if (directoryIndex[i].type == 'file') {
+						get(directoryIndex[i].path, function(content) {
+							PCMS(content, container);
+						});
+					}
+				}
+			});
+		} else {
+			PCMS("Please set your username in /hood/username.txt", container);
+		}
 	});
 };

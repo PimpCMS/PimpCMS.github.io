@@ -1,7 +1,0 @@
-Almost there!
-
-
-Configure your username.
-Right now, you're looking at content hosted in the PimpCMS.github.io repo. We want content to come from your github-username.github.io repo.
-In order do this, update the file at /hood/user.txt. Currently it contains "PimpCMS" which you'll want to replace with your username.
-Sometimes GitHub pages take a bit to update. Once it regenerates you'll see a different page!
