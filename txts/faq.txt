@@ -7,7 +7,7 @@ Our service -- writing software to empower writing -- is free and always will be
 
 How do I get started?
 Create a GitHub account. If you don't have one, sign up. GitHub is gracious enough to host your site! If you already have a GitHub pages url, you're going to need to figure out something clever to get this to work (pull request anyone?)
-Fork the PimpCMS repo into your GitHub account. Rename it to "github-usermane".github.io, substituting in your GitHub username so that GitHub pages will know to generate your site.
+Fork the PimpCMS repo into your GitHub account. Rename it to "github-username".github.io, substituting in your GitHub username so that GitHub pages will know to generate your site.
 Add and/or modify content. You can do this entirely in GitHub, with their text editor. In the /txts folder, you can add a new file by clicking the + button next to the current path in the repository.
 
 
