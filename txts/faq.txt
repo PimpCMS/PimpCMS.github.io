@@ -1,0 +1,15 @@
+Welcome to the PimpCMS FAQ!
+
+
+PimpCMS is an easy way to write content for the internet. We use GitHub pages to host your content, and provide a simple syntax for writing pages like this.
+
+
+How do I get started?
+Create a GitHub account. If you don't have one, sign up. GitHub is gracious enough to host your site! If you already have a GitHub pages url, you're going to need to figure out something clever to get this to work (pull request anyone?)
+Fork the PimpCMS repo into your GitHub account. Rename it to "github-usermane".github.io, substituting in your GitHub username so that GitHub pages will know to generate your site.
+Add and/or modify content. You can do this entirely in GitHub, with there text editor. In the /txts folder, you can add a new file by clicking the + button next to the current path in the repository.
+
+
+What's the writing format like?
+Copy and paste this text into a text editor to see the exact formatting. We hope the structure should become clear by reading the plain text.
+You must save the files as plain text (.txt) Our parser will have issues reading .doc and .rtf files.
