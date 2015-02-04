@@ -1,8 +1,9 @@
 Welcome to the PimpCMS FAQ!
 
 
-PimpCMS is an easy way to write content for the internet. We use GitHub pages to host your content, and provide a simple syntax for writing pages like this.
-
+PimpCMS is an easy way to write content for the internet.
+We use GitHub pages to host your content and a simple syntax to write pages like this.
+Our service -- writing software to empower writing -- is free and always will be.
 
 How do I get started?
 Create a GitHub account. If you don't have one, sign up. GitHub is gracious enough to host your site! If you already have a GitHub pages url, you're going to need to figure out something clever to get this to work (pull request anyone?)
